@@ -24,6 +24,10 @@ jobs:
       - run: npm run build
         env:
           GITHUB_PAGES: 'true'
+          # Set API base URL for production build (read from repository Variables)
+          # Go to Settings > Secrets and variables > Actions > Variables and create VITE_API_URL
+          # Example: https://my-app-latest-uss4.onrender.com
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
       # SPA fallback cho GitHub Pages: 404.html = index.html
       - run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v4
