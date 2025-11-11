@@ -1,0 +1,53 @@
+name: CI - Run Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
+
+jobs:
+  check-paths:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+            frontend:
+              - 'frontend/**'
+
+  test-backend:
+    needs: check-paths
+    if: ${{ needs.check-paths.outputs.backend == 'true' }}
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: ./backend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install dependencies (backend)
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - run: npm run build
+
+  test-frontend:
+    needs: check-paths
+    if: ${{ needs.check-paths.outputs.frontend == 'true' }}
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: ./frontend } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Install dependencies (frontend)
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - run: npm run build
