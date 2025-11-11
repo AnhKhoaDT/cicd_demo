@@ -23,7 +23,7 @@ export class UserService {
       const user = new this.userModel({ email, password: passwordHash });
       await user.save();
 
-      return { message: 'User registered successfully' };
+      return { message: 'User registered successfully.' };
     } catch (err: any) {
       if (err?.code === 11000) {
         // duplicate key
