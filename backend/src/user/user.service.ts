@@ -29,7 +29,7 @@ export class UserService {
         // duplicate key
         throw new BadRequestException('Email already registered');
       }
-      throw new InternalServerErrorException('Failed to register user');
+      throw new InternalServerErrorException('Failed to register user exit');
     }
   }
 }

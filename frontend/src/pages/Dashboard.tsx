@@ -52,7 +52,7 @@ export default function Dashboard() {
       <h1 className="text-2xl font-bold">Bảng điều khiển</h1>
       <div className="card">
         <div className="card-body">
-          <h2 className="text-lg font-semibold">Thông tin tài khoản của anh</h2>
+          <h2 className="text-lg font-semibold">Thông tin tài khoản của bạn</h2>
           <p className="text-sm text-gray-700">ID: {user.id}</p>
           <p className="text-sm text-gray-700">Email: {user.email}</p>
         </div>
