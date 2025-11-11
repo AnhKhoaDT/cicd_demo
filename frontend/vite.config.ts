@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react';
 // (ví dụ chuyển repo sang anhkhoadt.github.io hoặc cấu hình reverse proxy).
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: '/cicd_demo/',
 });
