@@ -11,10 +11,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  # đảm bảo base trong vite.config.ts là "/seminar_cicd_demo/" để hiển thị đúng trên Pages
-  VITE_BASE_PATH: /seminar_cicd_demo/
-
 jobs:
   build-frontend:
     name: Build Frontend
