@@ -36,7 +36,10 @@ jobs:
       - name: Install dependencies (backend)
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
-      - run: npm run build
+      - name: Run unit tests (backend)
+        run: npm test --silent
+      - name: Type-check/build (backend)
+        run: npm run build
 
   test-frontend:
     needs: check-paths
@@ -50,4 +53,7 @@ jobs:
       - name: Install dependencies (frontend)
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
-      - run: npm run build
+      - name: Run unit tests (frontend)
+        run: npm test --silent
+      - name: Build (frontend)
+        run: npm run build

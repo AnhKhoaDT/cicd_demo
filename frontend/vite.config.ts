@@ -1,9 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Luôn build cho root ('/'). Muốn deploy Project Pages thì phải đổi chiến lược
-// (ví dụ chuyển repo sang anhkhoadt.github.io hoặc cấu hình reverse proxy).
-export default defineConfig({
-  plugins: [react()],
-  base: '/cicd_demo/',
+// Allow using process.env without adding @types/node
+declare const process: any;
+
+// For GitHub Pages project site, set base to "/cicd_demo/" only when GITHUB_PAGES=true
+// Local dev and other hosts should use base "/"
+export default defineConfig(() => {
+  const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+  const base = isGitHubPages ? '/cicd_demo/' : '/';
+  return {
+    base,
+    plugins: [react()],
+  };
 });
