@@ -27,7 +27,7 @@ export class UserService {
     } catch (err: any) {
       if (err?.code === 11000) {
         // duplicate key
-        throw new BadRequestException('My Email already registered');
+        throw new BadRequestException('Email already registered');
       }
       throw new InternalServerErrorException('Failed to register user exit');
     }
