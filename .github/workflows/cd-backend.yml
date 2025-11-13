@@ -32,9 +32,9 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            docker.io/${{ secrets.DOCKER_USERNAME }}/my-nest-app:latest
-            docker.io/${{ secrets.DOCKER_USERNAME }}/my-nest-app:${{ github.sha }}
-          cache-from: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/my-nest-app:latest
+            docker.io/${{ secrets.DOCKER_USERNAME }}/my-app:latest
+            docker.io/${{ secrets.DOCKER_USERNAME }}/my-app:${{ github.sha }}
+          cache-from: type=registry,ref=docker.io/${{ secrets.DOCKER_USERNAME }}/my-app:latest
           cache-to: type=inline
 
   trigger-render-deploy:
