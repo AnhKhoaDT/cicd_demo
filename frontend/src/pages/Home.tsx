@@ -41,7 +41,7 @@ export default function Home() {
               className="btn btn-outline"
               onClick={() => navigate('/login')}
             >
-              I already have an account
+              I already have an account. stop
             </button>
           </div>
         </div>
